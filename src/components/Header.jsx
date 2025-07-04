@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { LuShoppingCart } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import useProducts from "../hooks/useProducts";
+import { useDispatch, useSelector } from "react-redux";
+import { FaRegCircleUser } from "react-icons/fa6";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { removeUser } from "../utils/userSlice";
+
 const Header = () => {
   useProducts();
+  const [showDropdown, setShowDropdown] = useState(false);
+  const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        dispatch(removeUser());
+        console.log("signed out");
+      })
+      .catch((error) => {
+        // navigate("/error");
+        // An error happened.
+      });
+  };
+
+  const handleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
   return (
     <div className="bg-gray-400 bg-gradient-to-b from-gray-600">
       <header className="flex justify-between ">
@@ -22,11 +47,27 @@ const Header = () => {
           <Link to="/about">
             <li>About</li>
           </Link>
-          <Link to="/login">
-            <li>
-              <button>Login/SignUp</button>
-            </li>
-          </Link>
+          {!user ? (
+            <Link to="/login">
+              <li>
+                <button className="cursor-pointer">Login/SignUp</button>
+              </li>
+            </Link>
+          ) : (
+            <div className="mt-1 text-2xl" onClick={handleDropdown}>
+              <FaRegCircleUser />
+              {showDropdown && (
+                <div className="w-28 absolute text-center mt-7 rounded-lg bg-black p-3 -ml-10 z-10">
+                  <button
+                    className="text-lg text-white hover:underline cursor-pointer "
+                    onClick={handleSignOut}
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
           <Link to="/cart">
             <li>
               <LuShoppingCart className="text-2xl mr-4 my-1" />

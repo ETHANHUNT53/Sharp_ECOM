@@ -9,21 +9,29 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import ProductPage from "./components/ProductPage";
 import CartPage from "./components/CartPage";
+import LoginWithPhone from "./components/LoginWithPhone";
+import LoginWithGoogle from "./components/LoginWithGoogle";
+import AuthProvider from "./components/AuthProvider";
+import Checkout from "./components/Checkout";
 
 function App() {
   return (
     <Provider store={appStore}>
-      <div>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/product/:productId" element={<ProductPage />} />
-        </Routes>
-      </div>
+      <AuthProvider>
+        <div>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/login" element={<LoginWithGoogle />} />
+            <Route path="/product/:productId" element={<ProductPage />} />
+            <Route path="/checkout" element={<Checkout />} />
+          </Routes>
+        </div>
+      </AuthProvider>
     </Provider>
   );
 }
