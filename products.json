@@ -1,0 +1,398 @@
+[
+  {
+    "id": 1,
+    "name": "Shine Bright Green Scrubber Pad (Packaging and different sizes available)",
+    "image": "https://5.imimg.com/data5/KD/FJ/FY/SELLER-38813518/green-scrubber-pad.jpg",
+    "minQuantity": 2,
+    "pricePerPiece": 1.45,
+    "quantity": "2 carton box - 3720 pcs",
+    "price": 9114,
+    "description": "A premium green scrubber pad ideal for kitchen, hotel, and industrial use. It measures 3x4 inches with 10mm thickness and comes in attractive packaging. Built to handle tough stains and ensure long-lasting use, it's perfect for heavy-duty cleaning tasks."
+  },
+  {
+    "id": 2,
+    "name": "Cotton Wick Making Machine",
+    "image": "https://images.jdmagicbox.com/quickquotes/images_main/round-cotton-wick-making-machine-2217588963-9kngxjkw.jpg",
+    "pricePerPiece": 12999,
+    "minQuantity": 1,
+    "quantity": "1",
+    "price": 12999,
+    "description": "This cotton wick making machine is designed for efficient production of round cotton wicks. It is perfect for small businesses or individuals looking to start a home-based wick production operation with minimal setup."
+  },
+  {
+    "id": 3,
+    "name": "Scruber Packing Machine",
+    "image": "https://cpimg.tistatic.com/07945573/b/5/Wooden-Box-Manual-Scrubber-Packing-Machine.jpg",
+    "minQuantity": 1,
+    "pricePerPiece": 16999,
+    "quantity": "1",
+    "price": 16999,
+    "description": "A sturdy and compact scrubber packing machine enclosed in a wooden box. It offers manual operation and is suitable for small-scale manufacturers aiming to improve packaging quality and speed."
+  },
+  {
+    "id": 4,
+    "name": "Scrub Sponge (Packaging and different sizes available)",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2021/11/NQ/CC/FX/137867332/1421-scrub-sponge-2-in-1-pad-for-kitchen-sink-bathroom-cleaning-scrubber.jpg",
+    "pricePerPiece": 58,
+    "minQuantity": 200,
+    "quantity": "200 dozen",
+    "price": 11600,
+    "description": "The 2-in-1 scrub sponge is crafted for superior cleaning of kitchen sinks, utensils, and bathrooms. Its dual-layer structure combines durability and scrubbing power, available in bulk for commercial or retail use."
+  },
+  {
+    "id": 5,
+    "name": "Scrubber Packaging Blister",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2022/11/ZE/KZ/UB/35127245/scrubber-packaging-blister-250x250.jpg",
+    "minQuantity": 25,
+    "pricePerPiece": 165,
+    "quantity": "25 kg",
+    "price": 4125,
+    "description": "Transparent and durable scrubber packaging blister that enhances product presentation and maintains hygiene. Easy to seal, lightweight, and ideal for retailers and manufacturers looking for cost-effective packaging."
+  },
+  {
+    "id": 6,
+    "name": "Pen Raw Material",
+    "image": "https://technodahak.com/wp-content/uploads/2024/10/Ball-Pen-Making-Raw-Material-1024x536.jpg.webp",
+    "minQuantity": 6250,
+    "pricePerPiece": [1.3, 1.45, 2.55],
+    "quantity": "6250 pcs",
+    "price": [1.3, 1.45, 2.55],
+    "description": "A complete assortment of raw materials used in pen manufacturing. This includes transparent barrels, colorful pen bodies, and high-quality refills. Ideal for factories or workshops focused on producing writing instruments.",
+    "categories": ["color", "transparent", "refill"]
+  },
+  {
+    "id": 7,
+    "name": "Packing Plastic Cleaning Scrubber",
+    "image": "https://m.media-amazon.com/images/I/41DbRzZN7nL.jpg",
+    "pricePerPiece": 39,
+    "minQuantity": 150,
+    "quantity": "150 dozen",
+    "price": 5850,
+    "description": "Plastic cleaning scrubbers designed for effective scrubbing and long-term use. Comes in bulk dozens, these scrubbers are great for household cleaning or commercial supply."
+  },
+  {
+    "id": 8,
+    "name": "Loose Toothbrush",
+    "image": "https://5.imimg.com/data5/ANDROID/Default/2022/11/RX/BX/ZM/80917315/product-jpeg-500x500.jpg",
+    "pricePerPiece": 2.55,
+    "minQuantity": 1,
+    "quantity": "5000 pcs",
+    "price": 12750,
+    "description": "Loose toothbrushes available in bulk quantity. Durable and economical, these are great for everyday personal care, community drives, or resale by wholesalers."
+  },
+  {
+    "id": 9,
+    "name": "Pen Making Machine (5 Set)",
+    "image": "https://5.imimg.com/data5/IOS/Default/2023/9/347324366/AE/YN/WR/191789761/product-jpeg-500x500.png",
+    "minQuantity": 1,
+    "pricePerPiece": 13999,
+    "quantity": "1",
+    "price": 13999,
+    "description": "A 5-set manual pen making machine that helps streamline pen manufacturing. Compact, efficient, and easy to operate, it's well-suited for startups or small production units."
+  },
+  {
+    "id": 10,
+    "name": "Pen Making Machine(8 Set (5+3) ink filling machine)",
+    "image": "https://5.imimg.com/data5/IOS/Default/2023/9/347324366/AE/YN/WR/191789761/product-jpeg-500x500.png",
+    "minQuantity": 1,
+    "pricePerPiece": 31999,
+    "quantity": "1",
+    "price": 31999,
+    "description": "Comprising 5 pen making tools and 3 ink filling units, this 8-set machine allows for a comprehensive pen production process. Ideal for small to medium-scale operations looking to enhance productivity."
+  },
+  {
+    "id": 11,
+    "name": "Pen Making Machine(6 Set)",
+    "image": "https://5.imimg.com/data5/IOS/Default/2023/9/347324366/AE/YN/WR/191789761/product-jpeg-500x500.png",
+    "minQuantity": 1,
+    "pricePerPiece": 21999,
+    "quantity": "1",
+    "price": 21999,
+    "description": "Pen manufacturing machine with 6 integrated tools designed for consistent and efficient production. Ideal for entrepreneurs expanding their pen-making capacity."
+  },
+  {
+    "id": 12,
+    "name": "Pen Making Machine(17 Set (4 persons can do work))",
+    "image": "https://5.imimg.com/data5/IOS/Default/2023/9/347324366/AE/YN/WR/191789761/product-jpeg-500x500.png",
+    "minQuantity": 1,
+    "pricePerPiece": 79999,
+    "quantity": "1",
+    "price": 79999,
+    "description": "A large-scale pen-making machine featuring 17 components and capacity for four operators. Designed for high output, this set is perfect for growing businesses."
+  },
+  {
+    "id": 13,
+    "name": "Refill Pen Making Machine",
+    "image": "https://m.media-amazon.com/images/I/81DAxyzJDnL._AC_UF350,350_QL80_.jpg",
+    "minQuantity": 1,
+    "pricePerPiece": 37999,
+    "quantity": "1",
+    "price": 37999,
+    "description": "The refill pen making machine offers specialized production of high-quality ink refills. It ensures precision and volume for pen manufacturers focusing on the refill segment."
+  },
+  {
+    "id": 14,
+    "name": "Mop Making Machine",
+    "image": "https://images.jdmagicbox.com/quickquotes/images_main/floor-wiper-making-machine-2226598039-a4wxesie.jpg",
+    "minQuantity": 1,
+    "pricePerPiece": 6999,
+    "quantity": "1",
+    "price": 6999,
+    "description": "The mop making machine facilitates the efficient production of floor cleaning mops. Built for simplicity and speed, it's suitable for both new and established cleaning product businesses."
+  },
+  {
+    "id": 15,
+    "name": "Broom Making Machine",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2024/6/424439898/PP/AD/DP/184710465/phool-jharoo-making-machine-500x500.jpg",
+    "minQuantity": 1,
+    "pricePerPiece": 9999,
+    "quantity": "1",
+    "price": 9999,
+    "description": "This machine is engineered to produce traditional Indian brooms or 'phool jhadoo'. It supports rural employment and helps manufacturers produce high-quality brooms at scale."
+  },
+  {
+    "id": 16,
+    "name": "Viper Making Machine",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2024/3/403289565/TN/KT/YB/144973685/wiper-making-machine.jpeg",
+    "minQuantity": 1,
+    "pricePerPiece": 10999,
+    "quantity": "1",
+    "price": 10999,
+    "description": "Durable and efficient viper (wiper) making machine built for producing floor wipers. It supports high-volume production and is perfect for cleaning product businesses."
+  },
+  {
+    "id": 17,
+    "name": "Sealing Machine",
+    "image": "https://m.media-amazon.com/images/I/61pWaqNy-kL.jpg",
+    "pricePerPiece": 1599,
+    "minQuantity": 5,
+    "quantity": "5",
+    "price": 7995,
+    "description": "Compact and user-friendly sealing machine designed for sealing plastic pouches and bags. Widely used in food, chemical, and retail industries for secure packaging."
+  },
+  {
+    "id": 18,
+    "name": "Band Sealer Machine",
+    "image": "https://4.imimg.com/data4/DF/EH/MY-1229025/band-sealer.jpg",
+    "minQuantity": 1,
+    "pricePerPiece": [12999, 16999, 39999],
+    "quantity": "1",
+    "price": [12999, 16999, 39999],
+    "description": "Multi-purpose band sealer machine available in mini, standard, and advanced versions. It ensures fast and reliable sealing for a wide range of packaging needs.",
+    "categories": ["Mini Band Sealer", "Band Sealer", "Advance Band Sealer"]
+  },
+  {
+    "id": 19,
+    "name": "Automatic Cotton Wick Making Machine",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2022/10/BF/SB/EE/53689273/fully-automatic-long-cotton-wick-making-machine-250x250.jpg",
+    "minQuantity": 1,
+    "pricePerPiece": [39999, 59999, 120999, 199999],
+    "quantity": "1",
+    "price": [39999, 59999, 120999, 199999],
+    "description": "An advanced automatic cotton wick making machine with multiple configurations including long, single, double, and four dye setups. Suitable for bulk production with minimal labor.",
+    "categories": [
+      "Long Cotton Wick",
+      "Round Cotton Wick Single Dye",
+      "Round Cotton Wick Double Dye",
+      "Round Cotton Wick Four Dye"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Foam Pad (Packaging and different sizes available)",
+    "image": "https://rukminim2.flixcart.com/image/850/1000/kuczmvk0/scrub-pad/c/d/b/regular-multicolor-foam-pad-scrubber-for-dish-utensil-tile-original-imag7gchuuhqdpnx.jpeg?q=90&crop=false",
+    "categories": ["16mm", "20mm"],
+    "quantity": "200 dozen",
+    "minQuantity": 200,
+    "price": [7200, 8800],
+    "pricePerPiece": [36, 44],
+    "description": "Foam pads available in 16mm and 20mm sizes. Ideal for dishwashing, bathroom scrubbing, and industrial cleaning. Multicolor variants add visual appeal for retail packaging."
+  },
+  {
+    "id": 21,
+    "name": "Phenyl",
+    "image": "https://www.bigbasket.com/media/uploads/p/xl/40308905_1-smart-home-herbal-phenyl-white-sandal.jpg",
+    "categories": ["500ml", "1l"],
+    "pricePerPiece": [44, 66],
+    "price": [8800, 13200],
+    "quantity": "200 pcs",
+    "minQuantity": 200,
+    "description": "Herbal white phenyl cleaner available in 500ml and 1L bottles. It effectively disinfects surfaces, leaves a refreshing sandalwood scent, and is ideal for homes and commercial cleaning."
+  },
+  {
+    "id": 22,
+    "name": "Toilet Cleaner",
+    "image": "https://images.apollo247.in/pub/media/catalog/product/a/p/apo0123_1-sep2023.jpg",
+    "categories": ["500ml", "1l"],
+    "pricePerPiece": [65, 90],
+    "price": [13000, 18000],
+    "quantity": "200 pcs",
+    "minQuantity": 200,
+    "description": "Powerful toilet cleaner offered in 500ml and 1L sizes. It removes tough stains, eliminates bacteria, and provides long-lasting freshness for household and institutional use."
+  },
+  {
+    "id": 23,
+    "name": "Dish Wash",
+    "image": "https://www.pitambari.com/shop/wp-content/uploads/2019/07/Untitled-design-41.png",
+    "categories": ["250ml"],
+    "pricePerPiece": [40],
+    "price": [8000],
+    "quantity": "200 pcs",
+    "minQuantity": 200,
+    "description": "Dishwashing liquid in 250ml bottles designed for cutting through grease and food stains. Mild on hands, tough on dirt, and perfect for daily kitchen cleaning."
+  },
+  {
+    "id": 24,
+    "name": "Steel & Gi Scrubber",
+    "image": "https://tiimg.tistatic.com/fp/1/007/741/long-durable-round-silver-stainless-steel-scrubber-for-cleaning-use-328.jpg",
+    "categories": ["Gi Scrubber", "Steel Scrubber"],
+    "pricePerPiece": [155, 195],
+    "price": [31000, 39000],
+    "quantity": "200 kgs",
+    "minQuantity": 200,
+    "description": "Long-lasting scrubbers made of steel and GI wire, designed for harsh cleaning applications. Supplied in bulk for wholesale distribution and industrial use."
+  },
+  {
+    "id": 25,
+    "name": "Scrubber Pad Sheet",
+    "image": "https://firsthub.in/public/uploads/all/H8WWKlDVMA8FehdArbp0phCaGdW9VYnqo03tR6j5.webp",
+    "categories": ["Gi Scrubber Pad", "Steel Scrubber"],
+    "pricePerPiece": [38, 43],
+    "price": [7600, 8600],
+    "quantity": "200 dozen",
+    "minQuantity": 200,
+    "description": "Heavy-duty scrubber pad sheets offered in both GI and steel variants. Ideal for retailers and packaging units that require bulk supply and manual cutting."
+  },
+  {
+    "id": 26,
+    "name": "Scrubber Sheet",
+    "image": "https://images.jdmagicbox.com/quickquotes/images_main/ss-scrubber-packing-card-385274474-oel3k.jpg",
+    "pricePerPiece": 7.5,
+    "price": 7500,
+    "quantity": "1000 pcs",
+    "minQuantity": 1000,
+    "description": "Scrubber sheets crafted for multi-purpose use in kitchen and industrial cleaning. Cost-effective and available in 1000-piece packs for wholesale or manufacturing purposes."
+  },
+  {
+    "id": 27,
+    "name": "Masala Sheet",
+    "image": "https://5.imimg.com/data5/ANDROID/Default/2021/1/GL/ZK/WS/34093573/product-jpeg-500x500.jpg",
+    "pricePerPiece": 4.5,
+    "price": 4500,
+    "quantity": "1000 pcs",
+    "minQuantity": 1000,
+    "description": "Masala packaging sheets ideal for spice manufacturers. Offers clean sealing, freshness retention, and a polished look for various powdered or whole spices."
+  },
+  {
+    "id": 28,
+    "name": "Toothbrush Sheet",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2022/2/KB/MB/OQ/80917315/tooth-brush-sheet-500x500.jpg",
+    "pricePerPiece": 5.5,
+    "price": 5500,
+    "quantity": "1000 pcs",
+    "minQuantity": 1000,
+    "description": "Toothbrush packaging sheets that ensure hygiene and display appeal. Commonly used by toothbrush manufacturers to package and present their products effectively."
+  },
+  {
+    "id": 29,
+    "name": "Tongue Cleaner",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2023/2/DO/KI/ML/12028626/kranti-plastic-handle-tongue-cleaner.jpeg",
+    "pricePerPiece": 300,
+    "price": 9000,
+    "quantity": "30 gross(1 gross = 144pcs)",
+    "minQuantity": 30,
+    "description": "Plastic-handled tongue cleaners available in large gross units. Popular for dental hygiene and ideal for distributors, clinics, and retail sellers."
+  },
+  {
+    "id": 30,
+    "name": "Tile Brush",
+    "image": "https://5.imimg.com/data5/HM/ZA/VW/SELLER-84869767/wonder-clean-red-tile-brush-500x500.jpg",
+    "pricePerPiece": 300,
+    "price": 15000,
+    "quantity": "50 dozen",
+    "minQuantity": 50,
+    "description": "Ergonomic tile brushes with firm bristles for heavy-duty scrubbing. Perfect for tiled surfaces in homes, commercial kitchens, and public restrooms."
+  },
+  {
+    "id": 31,
+    "name": "Toilet Brush",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7QtXqp16QijKPGPopaL9BFPv-ji4-PSKrDw&s",
+    "pricePerPiece": 13,
+    "price": 6500,
+    "quantity": "500 pcs",
+    "minQuantity": 500,
+    "description": "Durable toilet brushes designed for effective cleaning. Supplied in bulk, they are suitable for commercial cleaning services, retailers, and distributors."
+  },
+  {
+    "id": 32,
+    "name": "Body Loofa",
+    "image": "https://images.meesho.com/images/products/62784466/9o5hf_512.webp",
+    "pricePerPiece": 60,
+    "price": 12000,
+    "quantity": "200 dozen",
+    "minQuantity": 200,
+    "description": "Soft body loofahs made for gentle exfoliation and bathing comfort. Available in bulk dozens, suitable for cosmetic retailers and wholesalers."
+  },
+  {
+    "id": 33,
+    "name": "Body Stick Loofa",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2024/7/437677851/BM/MI/FU/113607908/ff1-500x500.png",
+    "pricePerPiece": 25,
+    "price": 5000,
+    "quantity": "200 pcs",
+    "minQuantity": 200,
+    "description": "Body stick loofah with long handle for easy back scrubbing. Great for daily personal care, elderly use, and retail packaging in beauty kits."
+  },
+  {
+    "id": 34,
+    "name": "Ready Pen",
+    "image": "https://5.imimg.com/data5/XL/GW/MY-16319652/plastic-ball-pen-500x500.jpg",
+    "pricePerPiece": 1.3,
+    "price": 13000,
+    "quantity": "10000 pcs",
+    "minQuantity": 10000,
+    "description": "Ready-to-use ball pens offered in bulk. Lightweight, smooth writing, and perfect for mass distribution in schools, offices, or businesses."
+  },
+  {
+    "id": 35,
+    "name": "Pen Ink",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2021/12/XT/YF/FY/65058434/use-and-throw-blue-ball-pen-500x500.jpeg",
+    "pricePerPiece": [495, 505, 625, 790],
+    "price": [9900, 10100, 12500, 15800],
+    "categories": ["blue", "black", "red", "green"],
+    "quantity": "20 lt",
+    "minQuantity": 20,
+    "description": "Pen ink available in blue, black, red, and green colors. Supplied in 20-liter containers, it's ideal for refill manufacturers and bulk pen producers."
+  },
+  {
+    "id": 36,
+    "name": "Pouches(All Types)",
+    "image": "https://www.packman.in/wp-content/uploads/2021/09/SUP-Mockup2020Asset-1-2x-100_hp1_1-2.jpg",
+    "pricePerPiece": 380,
+    "price": 19000,
+    "quantity": "50 kg",
+    "minQuantity": 50,
+    "description": "Strong, food-grade multi-use plastic pouches suitable for packaging spices, scrubbers, pens, and more. Designed for durability and tamper resistance."
+  },
+  {
+    "id": 37,
+    "name": "Pen Pouches",
+    "image": "https://krishnawriting.com/stylish/wp-content/uploads/2024/01/5-Piece-Pouch.jpg",
+    "pricePerPiece": [0.45, 0.75],
+    "categories": ["10 pen set", "20 pen set"],
+    "price": [4500, 7500],
+    "quantity": "10000 pcs",
+    "minQuantity": 10000,
+    "description": "Pen pouches made to pack 10 or 20 pens securely. Cost-effective and ideal for resale or bundling of writing products in a retail setting."
+  },
+  {
+    "id": 38,
+    "name": "Pen Packing Box - 20 Pen Set",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2024/7/435027940/VY/HY/IO/199808491/pen-boxes-250x250.jpg",
+    "pricePerPiece": 1.9,
+    "price": 9500,
+    "quantity": "5000 pcs",
+    "minQuantity": 5000,
+    "description": "Pen packing boxes designed to hold 20 pens. These sturdy and neatly finished boxes make storage and retail display more efficient and appealing."
+  }
+]

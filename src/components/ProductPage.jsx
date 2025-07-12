@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Shimmer from "./Shimmer";
+// import Shimmer from "./Shimmer";
 import { addItem } from "../utils/cartSlice";
+import ShimmerList from "./ShimmerList";
 
 const ProductPage = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
   const { products, loading } = useSelector((store) => store.products);
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
+
   const product = products?.find((p) => p?.id === parseInt(productId));
+  let quantity = useRef(null);
   console.log(product);
 
   const handleAddToCart = () => {
-    dispatch(addItem(product));
+    console.log(product);
+    if (quantity.current.value == null) {
+      quantity = product.minQuantity;
+    }
+    if (quantity.current.value < product.minQuantity) {
+      alert("Minimum order Quantity is : " + product.minQuantity);
+      return;
+    }
+    dispatch(addItem({ ...product, selectedCategoryIndex }));
   };
   if (loading || products.length === 0) {
-    return <Shimmer />;
+    return <ShimmerList />;
   }
   return (
     <div>
@@ -32,7 +44,10 @@ const ProductPage = () => {
               </h1>
               <div className="mt-4 sm:items-center sm:gap-4 sm:flex">
                 <p className="text-2xl font-extrabold text-gray-900 sm:text-3xl ">
-                  $1,249.99
+                  ₹
+                  {product.categories
+                    ? product.pricePerPiece[selectedCategoryIndex]
+                    : product.pricePerPiece}
                 </p>
 
                 <div className="flex items-center gap-2 mt-2 sm:mt-0">
@@ -105,6 +120,48 @@ const ProductPage = () => {
                 </div>
               </div>
 
+              {product.categories && (
+                <div className="mt-[5%] flex mx-auto">
+                  <h2 className="text-lg font-semibold mb-[2%] mr-[2%]">
+                    Category:
+                  </h2>
+                  <select
+                    className="bg-gray-300 rounded-md p-0.5"
+                    value={product.categories[selectedCategoryIndex]}
+                    name=""
+                    id=""
+                    onChange={(e) =>
+                      setSelectedCategoryIndex(
+                        product.categories.indexOf(e.target.value)
+                      )
+                    }
+                  >
+                    {product.categories.map((category, index) => (
+                      <option key={index} value={category}>
+                        {category}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+              <div>
+                <h2 className="text-lg font-semibold my-[2%] mr-[2%]">
+                  Minimum Order Quantity - {product.minOrderQuantity}
+                </h2>
+              </div>
+              <div className="mt-[2%] flex">
+                <h2 className="text-lg font-semibold mb-[2%] mr-[2%]">
+                  Quantity:
+                </h2>
+                <input
+                  type="number"
+                  placeholder={product.minQuantity}
+                  defaultValue={product.minQuantity}
+                  ref={quantity}
+                  className="p-2 border-2 border-black rounded-md placeholder:text-gray-700"
+                />
+              </div>
+
               <div className="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
                 <a
                   href="#"
@@ -159,18 +216,11 @@ const ProductPage = () => {
 
               <hr className="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
 
-              <p className="mb-6 text-gray-500 ">
-                Studio quality three mic array for crystal clear calls and voice
-                recordings. Six-speaker sound system for a remarkably robust and
-                high-quality audio experience. Up to 256GB of ultrafast SSD
-                storage.
-              </p>
+              <h2 className="text-xl mb-4 font-semibold">
+                Product Description
+              </h2>
 
-              <p className="text-gray-500 ">
-                Two Thunderbolt USB 4 ports and up to two USB 3 ports. Ultrafast
-                Wi-Fi 6 and Bluetooth 5.0 wireless. Color matched Magic Mouse
-                with Magic Keyboard or Magic Keyboard with Touch ID.
-              </p>
+              <p className="mb-6 text-gray-700 ">{product.description}</p>
             </div>
           </div>
         </div>

@@ -1,18 +1,41 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decreaseQuantity, increaseQuantity } from "../utils/cartSlice";
+import {
+  clearCart,
+  decreaseQuantity,
+  increaseQuantity,
+} from "../utils/cartSlice";
 import { useNavigate } from "react-router-dom";
 const CartPage = () => {
   const items = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  console.log(items);
   const navigate = useNavigate();
+  const calculateTotal = (items) => {
+    return items.reduce((total, item) => {
+      const unitPrice = item.categories
+        ? item.price?.[item.selectedCategoryIndex]
+        : item.price;
+
+      return total + unitPrice * item.quantity;
+    }, 0);
+  };
+
+  const totalPrice = calculateTotal(items);
+  const gst = Math.round(totalPrice * 0.18);
+  console.log(totalPrice);
+  const finalTotal = totalPrice + gst;
   const handleCheckout = () => {
     if (user) {
       navigate("/checkout");
     } else {
       navigate("/login");
     }
+  };
+
+  const handleClearCart = () => {
+    dispatch(clearCart());
   };
   return (
     <section className=" relative  after:contents-[''] after:absolute after:z-0 after:h-full xl:after:w-1/3 after:top-0 after:right-0 after:bg-gray-50">
@@ -28,11 +51,20 @@ const CartPage = () => {
               </h2>
             </div>
             {items.length == 0 ? (
-              <div className="flex justify-center items-center h-full">
-                <h2 className="font-manrope font-semibold text-3xl leading-10 text-black">
+              <div className="flex-col my-[25%] mx-[20%] h-full">
+                <h2 className="font-manrope font-semibold text-5xl  leading-10 text-black mb-8">
                   {" "}
                   Your Cart is empty!
                 </h2>
+
+                <div>
+                  <button
+                    className="rounded-lg w-[35%] bg-blue-800 py-2.5 px-4 text-white text-sm font-semibold text-center mb-8 transition-all duration-500 hover:bg-blue-900 cursor-pointer ml-25"
+                    onClick={() => navigate("/products")}
+                  >
+                    Browse Products
+                  </button>
+                </div>
               </div>
             ) : (
               <div className="grid grid-cols-12 mt-8 max-md:hidden pb-6 border-b border-gray-200">
@@ -58,7 +90,10 @@ const CartPage = () => {
               </div>
             )}
             {items.map((item) => (
-              <div className="flex flex-col min-[500px]:flex-row min-[500px]:items-center gap-5 py-6  border-b border-gray-200 group">
+              <div
+                key={item.id}
+                className="flex flex-col min-[500px]:flex-row min-[500px]:items-center gap-5 py-6  border-b border-gray-200 group"
+              >
                 <div className="w-full md:max-w-[126px]">
                   <img
                     src={item.image}
@@ -72,11 +107,16 @@ const CartPage = () => {
                       <h6 className="font-semibold text-base leading-7 text-black">
                         {item.name}
                       </h6>
-                      <h6 className="font-normal text-base leading-7 text-gray-500">
-                        Category
-                      </h6>
+                      {item.categories && (
+                        <h6 className="font-normal text-base leading-7 text-gray-500">
+                          Category
+                        </h6>
+                      )}
                       <h6 className="font-medium text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-indigo-600">
-                        Price - $120.00
+                        Price - ₹{" "}
+                        {item.categories
+                          ? item.pricePerPiece[item.selectedCategoryIndex]
+                          : item.price}
                       </h6>
                     </div>
                   </div>
@@ -119,7 +159,12 @@ const CartPage = () => {
                       <input
                         type="text"
                         className="border-y border-gray-200 outline-none text-gray-900 font-semibold text-lg w-full max-w-[73px] min-w-[60px] placeholder:text-gray-900 py-[15px]  text-center bg-transparent"
-                        placeholder={item.quantity}
+                        placeholder={
+                          item.quantity +
+                          " (" +
+                          item.minQuantity * item.quantity +
+                          ")"
+                        }
                       />
                       <button
                         className="group rounded-r-xl px-5 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:bg-gray-50 hover:border-gray-300 hover:shadow-gray-300 focus-within:outline-gray-300 cursor-pointer"
@@ -159,12 +204,25 @@ const CartPage = () => {
                   </div>
                   <div className="flex items-center max-[500px]:justify-center md:justify-end max-md:mt-3 h-full">
                     <p className="font-bold text-lg leading-8 text-gray-600 text-center transition-all duration-300 group-hover:text-indigo-600">
-                      $120.00
+                      ₹{" "}
+                      {item.categories
+                        ? item.price[item.selectedCategoryIndex] * item.quantity
+                        : item.price * item.quantity}
                     </p>
                   </div>
                 </div>
               </div>
             ))}
+            {items.length > 0 && (
+              <div>
+                <button
+                  className="rounded-lg w-full bg-black py-2.5 px-4 text-white text-sm font-semibold text-center mb-8 transition-all duration-500 hover:bg-black/80 cursor-pointer"
+                  onClick={handleClearCart}
+                >
+                  Clear Cart
+                </button>
+              </div>
+            )}
             {items.length != 0 && (
               <div className="flex items-center justify-end mt-8">
                 <button className="flex items-center px-5 py-3 rounded-full gap-2 border-none outline-0 group font-semibold text-lg leading-8 text-indigo-600 shadow-sm shadow-transparent transition-all duration-500 hover:text-indigo-700">
@@ -197,15 +255,23 @@ const CartPage = () => {
                 <p className="font-normal text-lg leading-8 text-black">
                   {items.length} Items
                 </p>
-                <p className="font-medium text-lg leading-8 text-black">
-                  $480.00
-                </p>
+                <div className="font-medium text-lg leading-8 text-black">
+                  {" "}
+                  {items.map((item) => (
+                    <p>
+                      ₹{" "}
+                      {item.categories
+                        ? item.price[item.selectedCategoryIndex] * item.quantity
+                        : item.price * item.quantity}
+                    </p>
+                  ))}
+                </div>
               </div>
               <form>
-                <label className="flex  items-center mb-1.5 text-gray-600 text-sm font-medium">
+                {/* <label className="flex  items-center mb-1.5 text-gray-600 text-sm font-medium">
                   Shipping - Shipping Cost
-                </label>
-                <label className="flex items-center mb-1.5 text-gray-400 text-sm font-medium">
+                </label> */}
+                {/* <label className="flex items-center mb-1.5 text-gray-400 text-sm font-medium">
                   Promo Code
                 </label>
                 <div className="flex pb-4 w-full">
@@ -227,14 +293,34 @@ const CartPage = () => {
                   <button className="rounded-lg w-full bg-black py-2.5 px-4 text-white text-sm font-semibold text-center mb-8 transition-all duration-500 hover:bg-black/80 cursor-pointer">
                     Apply
                   </button>
-                </div>
-                <div className="flex items-center justify-between py-8">
-                  <p className="font-medium text-xl leading-8 text-black">
-                    3 Items
-                  </p>
-                  <p className="font-semibold text-xl leading-8 text-indigo-600">
-                    $485.00
-                  </p>
+                </div> */}
+                <div className="">
+                  <div className="flex items-center justify-between ">
+                    <p className="font-medium text-md leading-8 text-black">
+                      {items.length} Items
+                    </p>
+                    <p className="font-semibold text-md leading-8 text-indigo-600">
+                      ₹ {totalPrice}
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between ">
+                    <p className="font-medium text-md leading-8 text-black">
+                      {" "}
+                      GST(@18%)
+                    </p>
+                    <p className="font-semibold text-md leading-8 text-indigo-600">
+                      ₹ {gst}
+                    </p>
+                  </div>
+                  <div className="flex items-center justify-between py-5">
+                    <p className="font-medium text-xl leading-8 text-black">
+                      {" "}
+                      Total
+                    </p>
+                    <p className="font-semibold text-xl leading-8 text-indigo-600">
+                      ₹ {finalTotal}
+                    </p>
+                  </div>
                 </div>
                 <button
                   className={`w-full text-center  rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500  ${

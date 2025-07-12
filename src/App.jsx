@@ -6,32 +6,71 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Products from "./components/Products";
 import { Provider } from "react-redux";
-import appStore from "./utils/appStore";
+import appStore, { persistor } from "./utils/appStore";
 import ProductPage from "./components/ProductPage";
 import CartPage from "./components/CartPage";
-import LoginWithPhone from "./components/LoginWithPhone";
 import LoginWithGoogle from "./components/LoginWithGoogle";
 import AuthProvider from "./components/AuthProvider";
 import Checkout from "./components/Checkout";
+import Footer from "./components/Footer";
+import ProtectedRoute from "./utils/ProtectedRoute.jsx";
+import Profile from "./components/Profile";
+import PublicRoute from "./utils/PublicRoute.jsx";
+import { PersistGate } from "redux-persist/integration/react";
+import ShippingPolicy from "./components/ShippingPolicy.jsx";
+import PrivacyPolicy from "./components/PrivacyPolicy.jsx";
+import TermsAndConditionsPolicy from "./components/TermsAndConditionsPolicy.jsx";
 
 function App() {
   return (
     <Provider store={appStore}>
-      <AuthProvider>
-        <div>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/login" element={<LoginWithGoogle />} />
-            <Route path="/product/:productId" element={<ProductPage />} />
-            <Route path="/checkout" element={<Checkout />} />
-          </Routes>
-        </div>
-      </AuthProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <AuthProvider>
+          <div>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/returnpolicy" element={<ShippingPolicy />} />
+              <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+              <Route
+                path="/termsandconditions"
+                element={<TermsAndConditionsPolicy />}
+              />
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute>
+                    <LoginWithGoogle />
+                  </PublicRoute>
+                }
+              />
+              <Route path="/product/:productId" element={<ProductPage />} />
+              <Route
+                path="/checkout"
+                element={
+                  <ProtectedRoute>
+                    <Checkout />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+            <Footer />
+          </div>
+        </AuthProvider>
+      </PersistGate>
     </Provider>
   );
 }

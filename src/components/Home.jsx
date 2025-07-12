@@ -1,3 +1,10 @@
+import { Link } from "react-router-dom";
+import useProducts from "../hooks/useProducts";
+
+import { useDispatch, useSelector } from "react-redux";
+import ProductCard from "./ProductCard";
+import ShimmerList from "./ShimmerList";
+
 const callouts = [
   {
     name: "Desk and Office",
@@ -28,6 +35,9 @@ const callouts = [
 ];
 
 export default function Home() {
+  useProducts();
+  const { products, loading } = useSelector((store) => store.products);
+  console.log(products);
   return (
     <div className="bg-gray-100 py-12">
       <p className="w-[60%] text-xl text-justify font-semibold text-gray-900 mx-auto">
@@ -42,27 +52,27 @@ export default function Home() {
       </p>
       <div className="mx-auto max-w-7xl -mt-12 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
-          <h2 className="text-2xl font-bold text-gray-900">Collections</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-[3%]">Products</h2>
 
-          <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:space-y-0 lg:gap-x-6">
-            {callouts.map((callout) => (
-              <div key={callout.name} className="group relative">
-                <img
-                  alt={callout.imageAlt}
-                  src={callout.imageSrc}
-                  className="w-full rounded-lg bg-white object-cover group-hover:opacity-75 max-sm:h-80 sm:aspect-2/1 lg:aspect-square"
-                />
-                <h3 className="mt-6 text-sm text-gray-500">
-                  <a href={callout.href}>
-                    <span className="absolute inset-0" />
-                    {callout.name}
-                  </a>
-                </h3>
-                <p className="text-base font-semibold text-gray-900">
-                  {callout.description}
-                </p>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            {loading || !Array.isArray(products) ? (
+              <ShimmerList />
+            ) : (
+              products.map((product) => (
+                <Link key={product.id} to={"/product/" + product.id}>
+                  <ProductCard
+                    imageSrc={product.image}
+                    price={product.price}
+                    name={product.name}
+                    minQuantity={product.minQuantity}
+                    pricePerPiece={product.pricePerPiece}
+                    quantity={product.quantity}
+                    description={product.description}
+                    categories={product?.categories}
+                  />
+                </Link>
+              ))
+            )}
           </div>
         </div>
       </div>

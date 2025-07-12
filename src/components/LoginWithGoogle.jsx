@@ -1,10 +1,94 @@
-import { signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  updateProfile,
+} from "firebase/auth";
 import { auth, provider } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
+import { checkValidData } from "../utils/validate";
 
 const LoginWithGoogle = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const name = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
+  const [isSignInForm, setIsSignInForm] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const toggleSignInForm = () => {
+    setIsSignInForm(!isSignInForm);
+  };
+
+  const handleButtonClick = () => {
+    const message = checkValidData(
+      email.current.value,
+      password.current.value,
+      !isSignInForm ? name.current.value : null
+    );
+    setErrorMessage(message);
+    if (message) return;
+
+    if (!isSignInForm) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              // Profile updated!
+              navigate("/");
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              console.log("Successfulllllllll");
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              // ...
+            })
+            .catch((error) => {
+              // An error occurred
+              setErrorMessage(error.message);
+            });
+
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " - " + errorMessage);
+          // ..
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          navigate("/");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " - " + errorMessage);
+        });
+    }
+  };
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -18,6 +102,7 @@ const LoginWithGoogle = () => {
           photoURL: photoURL,
         })
       );
+      navigate("/products");
     } catch (error) {
       console.error("Google Sign-In Error:", error.message);
     }
@@ -33,12 +118,32 @@ const LoginWithGoogle = () => {
             className="mx-auto h-10 w-auto"
           />
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-            Sign in to your account
+            {isSignInForm ? "Sign in to your account" : "Sign Up"}
           </h2>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
+            {!isSignInForm && (
+              <div>
+                <label
+                  htmlFor="name"
+                  className="block text-sm/6 font-medium text-gray-900"
+                >
+                  Full Name
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="name"
+                    type="text"
+                    ref={name}
+                    required
+                    autoComplete="name"
+                    className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  />
+                </div>
+              </div>
+            )}
             <div>
               <label
                 htmlFor="email"
@@ -51,6 +156,7 @@ const LoginWithGoogle = () => {
                   id="email"
                   name="email"
                   type="email"
+                  ref={email}
                   required
                   autoComplete="email"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -73,17 +179,19 @@ const LoginWithGoogle = () => {
                   name="password"
                   type="password"
                   required
+                  ref={password}
                   autoComplete="current-password"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
               </div>
-              <div className="text-sm ml-2">
-                <a
-                  href="#"
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
+              <p className="text-red-500 font-bold">{errorMessage}</p>
+              <div className="text-sm  mt-2 flex justify-end w-full ">
+                <button
+                  className=" hover:underline hover:text-blue-600 cursor-pointer"
+                  onClick={toggleSignInForm}
                 >
-                  Forgot password?
-                </a>
+                  {isSignInForm ? "Create new Account" : "Sign In"}
+                </button>
               </div>
             </div>
 
@@ -91,19 +199,20 @@ const LoginWithGoogle = () => {
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={handleButtonClick}
               >
-                Sign in
+                {isSignInForm ? "Sign in" : "Sign up"}
               </button>
             </div>
-            <div>
-              <div className="px-6 sm:px-0 max-w-sm">
+            <div className="w-full">
+              <div className="py-1.5 sm:px-0 w-full">
                 <button
                   type="button"
-                  className="text-white w-full  bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-between mr-2 mb-2 cursor-pointer"
+                  className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   onClick={handleGoogleLogin}
                 >
                   <svg
-                    className="mr-2 -ml-1 w-4 h-4"
+                    className="mr-2 mt-1 -ml-1 w-4 h-4"
                     aria-hidden="true"
                     focusable="false"
                     data-prefix="fab"
@@ -127,5 +236,4 @@ const LoginWithGoogle = () => {
     </>
   );
 };
-
 export default LoginWithGoogle;

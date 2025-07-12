@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import { useDispatch, useSelector } from "react-redux";
-import "react-phone-input-2/lib/style.css";
+import Checkout from "./Checkout";
+import Form from "./Form";
 import { PINCODE_API } from "../utils/constants";
+import { doc, setDoc } from "firebase/firestore";
 import { addUser } from "../utils/userSlice";
 import { db } from "../utils/firebase";
-import { doc, setDoc } from "firebase/firestore";
-import Form from "./Form";
 
-const Checkout = () => {
+const Profile = () => {
   const { user } = useSelector((store) => store.user);
-  const items = useSelector((store) => store.cart.items);
-  console.log(items);
   const dispatch = useDispatch();
 
   const [pincode, setPincode] = useState("");
+  const [name, setName] = useState(user.displayName || "");
   let [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
   const [stateName, setStateName] = useState("");
@@ -60,6 +59,7 @@ const Checkout = () => {
 
     const updatedDetails = {
       ...user,
+      displayName: name,
       phone,
       pincode,
       city,
@@ -79,31 +79,28 @@ const Checkout = () => {
   };
 
   return (
-    user && (
-      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6">
-        <h1 className="text-2xl md:text-4xl font-bold mt-8 md:mt-16">
-          Enter Address
-        </h1>
-        <Form
-          name={user.displayName}
-          email={user.email}
-          phone={phone}
-          setPhone={setPhone}
-          pincode={pincode}
-          setPincode={fetchPincode}
-          city={city}
-          setCity={setCity}
-          stateName={stateName}
-          setStateName={setStateName}
-          address={address}
-          setAddress={setAddress}
-          onSubmit={handleSubmit}
-          disabled={!user}
-          buttonText={"Proceed to Payment"}
-        />
-      </div>
-    )
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6">
+      <h1 className="text-2xl md:text-4xl font-bold mt-8 md:mt-16">Profile</h1>
+      <Form
+        name={name}
+        setName={setName}
+        email={user.email}
+        phone={phone}
+        setPhone={setPhone}
+        pincode={pincode}
+        setPincode={fetchPincode}
+        city={city}
+        setCity={setCity}
+        stateName={stateName}
+        setStateName={setStateName}
+        address={address}
+        setAddress={setAddress}
+        onSubmit={handleSubmit}
+        editableFields={{ name: true }}
+        buttonText={"Update Profile"}
+      />
+    </div>
   );
 };
 
-export default Checkout;
+export default Profile;
