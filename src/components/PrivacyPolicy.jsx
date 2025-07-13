@@ -13,9 +13,9 @@ const PrivacyPolicy = () => {
           our website{" "}
           <a
             className="text-blue-700 hover:underline"
-            href="https://www.sharpindustries.online/"
+            href="https://www.sharpindustries.org.in/"
           >
-            https://www.sharpindustries.online/
+            https://www.sharpindustries.org.in/
           </a>{" "}
           (hereinafter referred to as Platform). Please note that you may be
           able to browse certain sections of the Platform without registering

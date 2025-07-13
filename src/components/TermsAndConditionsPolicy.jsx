@@ -18,9 +18,9 @@ const TermsAndConditionsPolicy = () => {
           for access or usage of domain name{" "}
           <a
             className="text-blue-800 hover:underline"
-            href="https://www.sharpindustries.online/"
+            href="https://www.sharpindustries.org.in/"
           >
-            https://www.sharpindustries.online/
+            https://www.sharpindustries.org.in/
           </a>
           (‘Website’), including the related mobile site and mobile application
           (hereinafter referred to as ‘Platform’). Your use of the Platform and
