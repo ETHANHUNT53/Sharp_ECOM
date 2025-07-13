@@ -27,11 +27,12 @@ const CartPage = () => {
   console.log(totalPrice);
   const finalTotal = totalPrice + gst;
   const handleCheckout = () => {
-    if (user) {
-      navigate("/checkout");
-    } else {
-      navigate("/login");
-    }
+    // if (user) {
+    //   navigate("/checkout");
+    // } else {
+    //   navigate("/login");
+    // }
+    navigate("/checkout");
   };
 
   const handleClearCart = () => {
