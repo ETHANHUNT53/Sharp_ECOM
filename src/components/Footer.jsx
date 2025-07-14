@@ -36,21 +36,6 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6  font-semibold text-gray-900 text-md dark:text-white">
-                Follow us
-              </h2>
-              <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                <li className="mb-4">
-                  <a
-                    href="https://www.youtube.com/@SharpNewBusinessIdea"
-                    className="hover:underline "
-                  >
-                    Youtube
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
               <h2 className="mb-6 text-md font-semibold text-gray-900  dark:text-white">
                 Legal
               </h2>
