@@ -20,6 +20,8 @@ import { PersistGate } from "redux-persist/integration/react";
 import ShippingPolicy from "./components/ShippingPolicy.jsx";
 import PrivacyPolicy from "./components/PrivacyPolicy.jsx";
 import TermsAndConditionsPolicy from "./components/TermsAndConditionsPolicy.jsx";
+import ProductMachines from "./components/ProductMachines.jsx";
+import ProductRaw from "./components/ProductRaw.jsx";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/products" element={<Products />} />
+              <Route path="/product-machines" element={<ProductMachines />} />
+              <Route path="/product-raw" element={<ProductRaw />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/returnpolicy" element={<ShippingPolicy />} />
               <Route path="/privacypolicy" element={<PrivacyPolicy />} />

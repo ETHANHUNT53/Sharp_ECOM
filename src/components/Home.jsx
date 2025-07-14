@@ -4,6 +4,8 @@ import useProducts from "../hooks/useProducts";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
 import ShimmerList from "./ShimmerList";
+import ProductMachines from "./ProductMachines";
+import ProductRaw from "./ProductRaw";
 
 const callouts = [
   {
@@ -51,29 +53,13 @@ export default function Home() {
         to meet your manufacturing and trading needs.
       </p>
       <div className="mx-auto max-w-7xl -mt-12 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
-          <h2 className="text-2xl font-bold text-gray-900 mb-[3%]">Products</h2>
-
-          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {loading || !Array.isArray(products) ? (
-              <ShimmerList />
-            ) : (
-              products.map((product) => (
-                <Link key={product.id} to={"/product/" + product.id}>
-                  <ProductCard
-                    imageSrc={product.image}
-                    price={product.price}
-                    name={product.name}
-                    minQuantity={product.minQuantity}
-                    pricePerPiece={product.pricePerPiece}
-                    quantity={product.quantity}
-                    description={product.description}
-                    categories={product?.categories}
-                  />
-                </Link>
-              ))
-            )}
-          </div>
+        <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32 ">
+          <h3 className="text-4xl font-semibold mb-[2%] ">Machines</h3>
+          <ProductMachines />
+          <h3 className="text-4xl font-semibold my-[2%] ">
+            Raw Materials / Scrubbers
+          </h3>
+          <ProductRaw />
         </div>
       </div>
     </div>
