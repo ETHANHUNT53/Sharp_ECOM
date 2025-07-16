@@ -22,6 +22,10 @@ import PrivacyPolicy from "./components/PrivacyPolicy.jsx";
 import TermsAndConditionsPolicy from "./components/TermsAndConditionsPolicy.jsx";
 import ProductMachines from "./components/ProductMachines.jsx";
 import ProductRaw from "./components/ProductRaw.jsx";
+import CheckoutSuccess from "./components/CheckoutSuccess.jsx";
+import PaymentCallback from "./components/PaymentCallback.jsx";
+import OrderSummary from "./components/OrderSummary.jsx";
+import MyOrders from "./components/MyOrders.jsx";
 
 function App() {
   return (
@@ -40,6 +44,23 @@ function App() {
               <Route path="/cart" element={<CartPage />} />
               <Route path="/returnpolicy" element={<ShippingPolicy />} />
               <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+              <Route
+                path="/order-summary"
+                element={
+                  <ProtectedRoute>
+                    <OrderSummary />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/my-orders"
+                element={
+                  <ProtectedRoute>
+                    <MyOrders />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/payment-callback" element={<PaymentCallback />} />
               <Route
                 path="/termsandconditions"
                 element={<TermsAndConditionsPolicy />}

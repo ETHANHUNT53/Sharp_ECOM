@@ -4,12 +4,12 @@ import {
   clearCart,
   decreaseQuantity,
   increaseQuantity,
+  updateTotalPrice,
 } from "../utils/cartSlice";
 import { useNavigate } from "react-router-dom";
 const CartPage = () => {
   const items = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.user);
   console.log(items);
   const navigate = useNavigate();
   const calculateTotal = (items) => {
@@ -22,17 +22,17 @@ const CartPage = () => {
     }, 0);
   };
 
-  const totalPrice = calculateTotal(items);
-  const gst = Math.round(totalPrice * 0.18);
-  console.log(totalPrice);
-  const finalTotal = totalPrice + gst;
+  const price = calculateTotal(items);
+  const gst = Math.round(price * 0.18);
+  console.log(price);
+  const finalTotal = price + gst;
   const handleCheckout = () => {
     // if (user) {
     //   navigate("/checkout");
     // } else {
     //   navigate("/login");
-    // }
     navigate("/checkout");
+    dispatch(updateTotalPrice(finalTotal));
   };
 
   const handleClearCart = () => {
@@ -301,7 +301,7 @@ const CartPage = () => {
                       {items.length} Items
                     </p>
                     <p className="font-semibold text-md leading-8 text-indigo-600">
-                      ₹ {totalPrice}
+                      ₹ {price}
                     </p>
                   </div>
                   <div className="flex items-center justify-between ">

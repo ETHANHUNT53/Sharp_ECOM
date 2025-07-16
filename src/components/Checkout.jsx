@@ -5,23 +5,39 @@ import "react-phone-input-2/lib/style.css";
 import { PINCODE_API } from "../utils/constants";
 import { addUser } from "../utils/userSlice";
 import { db } from "../utils/firebase";
-import { doc, setDoc } from "firebase/firestore";
+import axios from "axios";
+import { doc, setDoc, collection, addDoc, Timestamp } from "firebase/firestore";
 import Form from "./Form";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const { user } = useSelector((store) => store.user);
+  const totalPrice = useSelector((store) => store.cart.totalPrice);
   const items = useSelector((store) => store.cart.items);
-  console.log(items);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [pincode, setPincode] = useState("");
-  let [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
   const [stateName, setStateName] = useState("");
   const [address, setAddress] = useState("");
   const [cityandState, setCityAndState] = useState(null);
 
-  // Fetch pincode data
+  // 🔁 Load PhonePe script once
+  useEffect(() => {
+    if (!window.PhonePeCheckout) {
+      const script = document.createElement("script");
+      script.src = "https://mercury.phonepe.com/web/bundle/checkout.js";
+      script.async = true;
+      script.onload = () => {
+        console.log("✅ PhonePe script loaded");
+      };
+      document.head.appendChild(script);
+    }
+  }, []);
+
+  // 📦 Fetch pincode info
   const fetchPincode = async (value) => {
     setPincode(value);
     if (value.length === 6) {
@@ -37,7 +53,6 @@ const Checkout = () => {
     }
   };
 
-  // Set city and state from fetched data
   useEffect(() => {
     if (cityandState) {
       setCity(cityandState[0]?.District || "");
@@ -45,22 +60,93 @@ const Checkout = () => {
     }
   }, [cityandState]);
 
-  // Submit and update userSlice
+  // ✅ Firestore order creation
+  const createOrderInFirestore = async (txnId) => {
+    const processedPhone = phone.slice(2);
+    const orderData = {
+      userId: user.uid,
+      name: user.displayName,
+      email: user.email,
+      phone: processedPhone,
+      pincode,
+      city,
+      state: stateName,
+      address,
+      totalAmount: totalPrice,
+      orderId: txnId,
+      order: items,
+      status: "PAID",
+      createdAt: Timestamp.now(),
+    };
+
+    try {
+      await addDoc(collection(db, "orders"), orderData);
+      console.log("✅ Order saved in Firestore");
+    } catch (error) {
+      console.error("❌ Error saving order:", error);
+    }
+  };
+
+  const initiatePhonePePayment = async () => {
+    const txnId = "txn_" + Date.now();
+
+    try {
+      const res = await axios.post(
+        "https://initiatepayment-giehdpkcmq-uc.a.run.app",
+        {
+          amount: totalPrice * 100,
+          txnId,
+          userId: user.uid,
+        }
+      );
+
+      const redirectUrl = res?.data?.redirectUrl;
+      console.log("📦 redirectUrl:", res?.data?.redirectUrl);
+
+      if (!redirectUrl || !window.PhonePeCheckout) {
+        alert("PhonePe script not loaded or redirect URL missing.");
+        return;
+      }
+
+      window.PhonePeCheckout.transact({
+        tokenUrl: redirectUrl,
+        type: "IFRAME",
+        callback: async (response) => {
+          console.log(response);
+          if (response === "USER_CANCEL") {
+            alert("Payment cancelled by user");
+          } else if (response === "CONCLUDED") {
+            await createOrderInFirestore(txnId);
+            alert("Payment completed successfully");
+            navigate("/order-summary");
+          } else if (response === "PENDING") {
+            navigate("/payment-callback");
+          }
+        },
+      });
+    } catch (error) {
+      console.error("PhonePe Error:", error);
+      alert("Error initiating PhonePe payment");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (pincode.length !== 6) {
       alert("Pincode must be 6 digits");
       return;
     }
-    phone = phone.slice(2);
-    if (!phone || phone.length < 10) {
+
+    const processedPhone = phone.slice(2);
+    if (!processedPhone || processedPhone.length < 10) {
       alert("Please enter a valid phone number.");
       return;
     }
 
     const updatedDetails = {
       ...user,
-      phone,
+      phone: processedPhone,
       pincode,
       city,
       state: stateName,
@@ -70,12 +156,11 @@ const Checkout = () => {
     try {
       await setDoc(doc(db, "users", user.uid), updatedDetails);
       dispatch(addUser(updatedDetails));
-      alert("Details saved to Firebase!");
+      await initiatePhonePePayment();
     } catch (error) {
       console.error("Error saving to Firebase:", error);
       alert("Failed to save details. Try again.");
     }
-    alert("Address details saved!");
   };
 
   return (
@@ -101,6 +186,9 @@ const Checkout = () => {
           disabled={!user}
           buttonText={"Proceed to Payment"}
         />
+
+        {/* 📦 Required for PhonePe IFRAME */}
+        <div id="phonepe_checkout_container" className="mt-10 w-full" />
       </div>
     )
   );

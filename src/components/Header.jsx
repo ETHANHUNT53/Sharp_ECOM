@@ -174,6 +174,12 @@ const Header = () => {
                   >
                     Profile
                   </Link>
+                  <Link
+                    to="/my-orders"
+                    className="block px-4 py-2 text-md font-medium text-gray-700 hover:bg-gray-200"
+                  >
+                    My Orders
+                  </Link>
                   <button
                     onClick={handleSignOut}
                     className="block w-full text-left px-4 py-2 text-md font-medium cursor-pointer text-gray-700 hover:bg-gray-200"
@@ -248,6 +254,12 @@ const Header = () => {
                   About
                 </Link>
                 <Link
+                  className="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-lg"
+                  to={"/my-orders"}
+                >
+                  My Orders
+                </Link>
+                <Link
                   to="/contact"
                   className="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-lg"
                 >
@@ -264,12 +276,13 @@ const Header = () => {
                   </Link>
                 ) : (
                   <div>
-                    <div className="flex cursor-pointer">
+                    <div className="flex cursor-pointer ml-2">
                       <MdAccountCircle className="text-3xl " />
                       <span className="mt-1 ml-4 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-lg">
                         Profile
                       </span>
                     </div>
+
                     <div className="w-full flex justify-center mt-[30%]">
                       <button
                         className="text-base font-semibold mt-4 w-[60%] bg-black text-white p-3  hover:bg-gray-50 rounded-lg"

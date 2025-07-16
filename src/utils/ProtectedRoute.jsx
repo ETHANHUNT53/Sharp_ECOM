@@ -10,14 +10,18 @@ const ProtectedRoute = ({ children }) => {
   };
   if (!user) {
     return (
-      <div className="text-center mt-10 mb-[30%]">
-        Checking authentication... Sign In to Continue
-        <button
-          onClick={handleClick}
-          className={`w-full text-center rounded-xl py-3 px-6 font-semibold text-lg transition-all duration-500 ${"bg-green-700 text-white hover:bg-green-800 cursor-pointer"}`}
-        >
-          Sign In
-        </button>
+      <div className="text-center mt-10 mb-[30%] ">
+        <h3 className="sm:text-xl font-semibold md:text-xl lg:text-xl">
+          Checking authentication... Sign In to Continue
+        </h3>
+        <div>
+          <button
+            onClick={handleClick}
+            className={`w-[30%] mt-[3%] text-center rounded-xl py-3 px-6 font-semibold text-lg transition-all duration-500 ${"bg-green-700 text-white hover:bg-green-800 cursor-pointer"}`}
+          >
+            Sign In
+          </button>
+        </div>
       </div>
     );
   }

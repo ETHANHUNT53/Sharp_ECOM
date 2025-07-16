@@ -34,14 +34,8 @@ const cartSlice = createSlice({
     clearCart: (state, action) => {
       state.items.length = 0;
     },
-    updateTotalPrice: (state) => {
-      state.totalPrice = state.items.reduce((sum, item) => {
-        const unitPrice = item.categories
-          ? item.pricePerPiece[0] * item.minQuantity
-          : item.price || 0;
-        const quantityToCharge = Math.max(item.quantity, item.minQuantity);
-        return total + unitPrice * quantityToCharge;
-      }, 0);
+    updateTotalPrice: (state, action) => {
+      state.totalPrice = action.payload;
     },
   },
 });
