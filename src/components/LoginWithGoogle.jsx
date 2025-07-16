@@ -48,7 +48,6 @@ const LoginWithGoogle = () => {
               // Profile updated!
               navigate("/");
               const { uid, email, displayName, photoURL } = auth.currentUser;
-              console.log("Successfulllllllll");
               dispatch(
                 addUser({
                   uid: uid,

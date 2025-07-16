@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 const CartPage = () => {
   const items = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
-  console.log(items);
   const navigate = useNavigate();
   const calculateTotal = (items) => {
     return items.reduce((total, item) => {
@@ -24,7 +23,6 @@ const CartPage = () => {
 
   const price = calculateTotal(items);
   const gst = Math.round(price * 0.18);
-  console.log(price);
   const finalTotal = price + gst;
   const handleCheckout = () => {
     // if (user) {

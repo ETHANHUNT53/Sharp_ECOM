@@ -9,7 +9,6 @@ const LoginWithPhone = () => {
     try {
       const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {});
       const confirmation = await signInWithPhoneNumber(auth, phone, recaptcha);
-      console.log(confirmation);
     } catch (err) {
       console.error(err);
     }

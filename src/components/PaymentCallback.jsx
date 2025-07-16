@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 const PaymentCallback = () => {
   useEffect(() => {
     // You can handle verification logic here in future
-    console.log("Payment callback hit");
   }, []);
 
   return (

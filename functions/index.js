@@ -6,7 +6,7 @@ const axios = require("axios");
 exports.initiatePayment = functions.https.onRequest((req, res) => {
   cors(req, res, async () => {
     try {
-      console.log("📩 Payment payload received:", req.body);
+      // console.log("📩 Payment payload received:", req.body);
 
       // Get Access Token
       const tokenRes = await axios.post(
@@ -23,9 +23,9 @@ exports.initiatePayment = functions.https.onRequest((req, res) => {
           },
         }
       );
-      console.log("tokenRes", tokenRes);
+      // console.log("tokenRes", tokenRes);
       const accessToken = tokenRes.data.access_token;
-      console.log("✅ Access token:", accessToken);
+      // console.log("✅ Access token:", accessToken);
 
       // Payment Payload
       const merchantOrderId = "TX" + Date.now();
@@ -41,7 +41,7 @@ exports.initiatePayment = functions.https.onRequest((req, res) => {
         },
       };
 
-      console.log("🚀 Sending to PhonePe:", paymentPayload);
+      // console.log("🚀 Sending to PhonePe:", paymentPayload);
 
       const paymentResponse = await axios.post(
         "https://api.phonepe.com/apis/pg/checkout/v2/pay",
@@ -54,7 +54,7 @@ exports.initiatePayment = functions.https.onRequest((req, res) => {
         }
       );
 
-      console.log("✅ Payment initiated. Response:", paymentResponse.data);
+      // console.log("✅ Payment initiated. Response:", paymentResponse.data);
 
       return res.status(200).json({
         redirectUrl: paymentResponse.data.redirectUrl,

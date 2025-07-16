@@ -49,7 +49,7 @@ const Header = () => {
     signOut(auth)
       .then(() => {
         // dispatch(removeUser());
-        console.log("signed out");
+        // console.log("signed out");
       })
       .catch((error) => {
         // Handle error

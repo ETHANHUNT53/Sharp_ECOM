@@ -81,7 +81,6 @@ const Checkout = () => {
 
     try {
       await addDoc(collection(db, "orders"), orderData);
-      console.log("✅ Order saved in Firestore");
     } catch (error) {
       console.error("❌ Error saving order:", error);
     }
@@ -101,7 +100,6 @@ const Checkout = () => {
       );
 
       const redirectUrl = res?.data?.redirectUrl;
-      console.log("📦 redirectUrl:", res?.data?.redirectUrl);
 
       if (!redirectUrl || !window.PhonePeCheckout) {
         alert("PhonePe script not loaded or redirect URL missing.");
@@ -112,7 +110,6 @@ const Checkout = () => {
         tokenUrl: redirectUrl,
         type: "IFRAME",
         callback: async (response) => {
-          console.log(response);
           if (response === "USER_CANCEL") {
             alert("Payment cancelled by user");
           } else if (response === "CONCLUDED") {

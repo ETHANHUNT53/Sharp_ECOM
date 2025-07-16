@@ -13,10 +13,8 @@ const ProductPage = () => {
 
   const product = products?.find((p) => p?.id === parseInt(productId));
   let quantity = useRef(null);
-  console.log(product);
 
   const handleAddToCart = () => {
-    console.log(product);
     if (quantity.current.value == null) {
       quantity = product.minQuantity;
     }

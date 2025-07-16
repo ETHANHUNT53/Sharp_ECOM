@@ -39,7 +39,7 @@ const callouts = [
 export default function Home() {
   useProducts();
   const { products, loading } = useSelector((store) => store.products);
-  console.log(products);
+
   return (
     <div className="bg-gray-100 py-12">
       <p className="w-[60%] text-xl text-justify font-semibold text-gray-900 mx-auto">
