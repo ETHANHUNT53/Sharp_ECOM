@@ -48,7 +48,7 @@ const ProductPage = () => {
                     : product.pricePerPiece}
                 </p>
 
-                <div className="flex items-center gap-2 mt-2 sm:mt-0">
+                {/* <div className="flex items-center gap-2 mt-2 sm:mt-0">
                   <div className="flex items-center gap-1">
                     <svg
                       className="w-4 h-4 text-yellow-300"
@@ -115,7 +115,7 @@ const ProductPage = () => {
                   >
                     345 Reviews
                   </a>
-                </div>
+                </div> */}
               </div>
 
               {product.categories && (

@@ -129,7 +129,7 @@ const Form = ({
         </div>
 
         {/* Save Address Checkbox */}
-        <div className="flex items-start mb-5">
+        {/* <div className="flex items-start mb-5">
           <input
             id="remember"
             type="checkbox"
@@ -141,7 +141,7 @@ const Form = ({
           >
             Save Address
           </label>
-        </div>
+        </div> */}
 
         {/* Submit Button */}
         <button

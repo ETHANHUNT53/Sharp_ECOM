@@ -16,7 +16,7 @@ const Checkout = () => {
   const items = useSelector((store) => store.cart.items);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const [pincode, setPincode] = useState("");
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
@@ -88,7 +88,7 @@ const Checkout = () => {
 
   const initiatePhonePePayment = async () => {
     const txnId = "txn_" + Date.now();
-
+    setLoading(true);
     try {
       const res = await axios.post(
         "https://initiatepayment-giehdpkcmq-uc.a.run.app",
@@ -103,6 +103,7 @@ const Checkout = () => {
 
       if (!redirectUrl || !window.PhonePeCheckout) {
         alert("PhonePe script not loaded or redirect URL missing.");
+        setLoading(false);
         return;
       }
 
@@ -110,6 +111,7 @@ const Checkout = () => {
         tokenUrl: redirectUrl,
         type: "IFRAME",
         callback: async (response) => {
+          setLoading(false);
           if (response === "USER_CANCEL") {
             alert("Payment cancelled by user");
           } else if (response === "CONCLUDED") {
@@ -123,6 +125,7 @@ const Checkout = () => {
       });
     } catch (error) {
       console.error("PhonePe Error:", error);
+      setLoading(false);
       alert("Error initiating PhonePe payment");
     }
   };
@@ -166,6 +169,12 @@ const Checkout = () => {
         <h1 className="text-2xl md:text-4xl font-bold mt-8 md:mt-16">
           Enter Address
         </h1>
+        {loading && (
+          <div className="fixed inset-0 z-50 bg-white/80 flex items-center justify-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+            <p className="ml-4 text-lg font-medium">Initializing payment...</p>
+          </div>
+        )}
         <Form
           name={user.displayName}
           email={user.email}
