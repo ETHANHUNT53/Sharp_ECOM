@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useProducts from "../hooks/useProducts";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -8,6 +8,9 @@ import ShimmerList from "./ShimmerList";
 const ProductMachines = () => {
   useProducts();
   const { products, loading } = useSelector((store) => store.products);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const machineProducts = Array.isArray(products)
     ? products.filter((product) => product.type === "machine")
     : [];
