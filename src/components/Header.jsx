@@ -58,7 +58,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white fixed w-full z-10 ">
+    <header className="bg-gray-100 fixed w-full z-10 shadow-lg ">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         {/* Left: Burger Menu on Mobile */}
         <div className="flex lg:hidden">
