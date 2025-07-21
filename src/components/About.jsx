@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const About = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
-    <div className="w-[60%] mx-auto">
+    <div className="w-[60%] mx-auto pt-[25%] md:pt-[5%]">
       <div className="my-[4%]  text-justify">
         <h4 className="mb-[2%] text-4xl font-semibold">About</h4>
         <p>

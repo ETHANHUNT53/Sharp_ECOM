@@ -6,43 +6,17 @@ import ProductCard from "./ProductCard";
 import ShimmerList from "./ShimmerList";
 import ProductMachines from "./ProductMachines";
 import ProductRaw from "./ProductRaw";
-
-const callouts = [
-  {
-    name: "Desk and Office",
-    description: "Work from home accessories",
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-02-edition-01.jpg",
-    imageAlt:
-      "Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.",
-    href: "#",
-  },
-  {
-    name: "Self-Improvement",
-    description: "Journals and note-taking",
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-02-edition-02.jpg",
-    imageAlt:
-      "Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.",
-    href: "#",
-  },
-  {
-    name: "Travel",
-    description: "Daily commute essentials",
-    imageSrc:
-      "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-02-edition-03.jpg",
-    imageAlt: "Collection of four insulated travel bottles on wooden shelf.",
-    href: "#",
-  },
-];
+import { useEffect } from "react";
 
 export default function Home() {
   useProducts();
   const { products, loading } = useSelector((store) => store.products);
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
-    <div className="bg-gray-100 py-12">
-      <p className="w-[60%] text-xl text-justify font-semibold text-gray-900 mx-auto">
+    <div className="bg-gray-100 py-12 pt-[30%] md:pt-[15%] lg:pt-[10%]">
+      <p className="w-[60%] md:text-xl text-justify font-semibold text-gray-900 mx-auto mb-8">
         At Sharp Industries, we take pride in being a trusted Manufacturer and
         Trader of high-quality machinery and products like Ball Pen Making
         Machines, Scrubber Packing Machines, and Dish Scrubbers. Since our

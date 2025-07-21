@@ -8,7 +8,7 @@ import { auth, provider } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { checkValidData } from "../utils/validate";
 
 const LoginWithGoogle = () => {
@@ -19,6 +19,9 @@ const LoginWithGoogle = () => {
   const password = useRef(null);
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
   };
@@ -109,7 +112,7 @@ const LoginWithGoogle = () => {
 
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
             {isSignInForm ? "Sign in to your account" : "Sign Up"}

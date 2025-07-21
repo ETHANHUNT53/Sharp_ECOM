@@ -15,6 +15,10 @@ const OrderSummary = () => {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   const fetchLatestOrder = async () => {
     try {
       const q = query(

@@ -6,7 +6,9 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 const OrderHistory = () => {
   const { user } = useSelector((store) => store.user);
   const [orders, setOrders] = useState([]);
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -29,7 +31,7 @@ const OrderHistory = () => {
   }, [user]);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
+    <div className="max-w-5xl mx-auto px-4 py-8 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-center">Order History</h1>
       {orders.length === 0 ? (
         <p className="text-center text-gray-600">No orders found.</p>

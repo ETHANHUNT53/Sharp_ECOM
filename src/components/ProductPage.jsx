@@ -1,15 +1,20 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 // import Shimmer from "./Shimmer";
 import { addItem } from "../utils/cartSlice";
 import ShimmerList from "./ShimmerList";
+import { ToastContainer, toast, Flip } from "react-toastify";
 
 const ProductPage = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
   const { products, loading } = useSelector((store) => store.products);
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   const product = products?.find((p) => p?.id === parseInt(productId));
   let quantity = useRef(null);
@@ -23,12 +28,36 @@ const ProductPage = () => {
       return;
     }
     dispatch(addItem({ ...product, selectedCategoryIndex }));
+    toast.success("Product successfully added to cart!", {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Flip,
+    });
   };
   if (loading || products.length === 0) {
     return <ShimmerList />;
   }
   return (
-    <div>
+    <div className="min-h-screen pt-[3%]">
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Flip}
+      />
       <section className="py-8 bg-white md:py-16  antialiased">
         <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0">
           <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">

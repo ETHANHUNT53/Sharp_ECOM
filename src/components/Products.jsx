@@ -3,10 +3,14 @@ import { useSelector } from "react-redux";
 import useProducts from "../hooks/useProducts";
 import ShimmerList from "./ShimmerList";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Products() {
   useProducts();
   const { products, loading } = useSelector((store) => store.products);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <div className="bg-white">

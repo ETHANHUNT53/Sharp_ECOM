@@ -10,8 +10,8 @@ const ProtectedRoute = ({ children }) => {
   };
   if (!user) {
     return (
-      <div className="text-center mt-10 mb-[30%] ">
-        <h3 className="sm:text-xl font-semibold md:text-xl lg:text-xl">
+      <div className="text-center mb-[20%] md:pt-[8%] min-h-screen pt-[30%] sm:pt-[30%] lg:pt-[30%] ">
+        <h3 className="sm:text-xl font-semibold md:text-xl lg:text-xl ">
           Checking authentication... Sign In to Continue
         </h3>
         <div>

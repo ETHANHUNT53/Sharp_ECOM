@@ -24,6 +24,10 @@ const Checkout = () => {
   const [address, setAddress] = useState("");
   const [cityandState, setCityAndState] = useState(null);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   // 🔁 Load PhonePe script once
   useEffect(() => {
     if (!window.PhonePeCheckout) {
@@ -165,7 +169,7 @@ const Checkout = () => {
 
   return (
     user && (
-      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 pt-[13%] md:pt-[5%]">
         <h1 className="text-2xl md:text-4xl font-bold mt-8 md:mt-16">
           Enter Address
         </h1>

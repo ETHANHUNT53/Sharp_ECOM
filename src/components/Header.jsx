@@ -46,6 +46,7 @@ const Header = () => {
     return () => unsubscribe();
   }, [dispatch]);
   const handleSignOut = () => {
+    setMobileMenuOpen(false);
     signOut(auth)
       .then(() => {
         // dispatch(removeUser());
@@ -243,12 +244,14 @@ const Header = () => {
               <div className="space-y-2 py-6">
                 <Link
                   to="/products"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-lg"
                 >
                   Products
                 </Link>
                 <Link
                   to="/about"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-lg"
                 >
                   About
@@ -256,12 +259,14 @@ const Header = () => {
                 <Link
                   className="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-lg"
                   to={"/my-orders"}
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   My Orders
                 </Link>
                 <Link
                   to="/contact"
                   className="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-lg"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Contact
                 </Link>
@@ -270,6 +275,7 @@ const Header = () => {
                 {!user ? (
                   <Link
                     to="/login"
+                    onClick={() => setMobileMenuOpen(false)}
                     className="block px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 rounded-lg"
                   >
                     Log in
