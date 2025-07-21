@@ -44,7 +44,7 @@ const ProductPage = () => {
     return <ShimmerList />;
   }
   return (
-    <div className="min-h-screen pt-[3%]">
+    <div className="min-h-screen pt-[13%] md:pt-[5%]">
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
